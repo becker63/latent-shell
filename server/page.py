@@ -34,7 +34,7 @@ input { width: 100%; min-width: 0; border: 0; outline: none; font: inherit; colo
 </dialog>
 <script src="/static/xterm.js"></script>
 <script src="/static/xterm-fit.js"></script>
-<script src="/static/host.js"></script>
+<script src="/static/host.js?v=boot-tree-2"></script>
 </body>
 </html>
 """
