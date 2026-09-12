@@ -99,10 +99,18 @@ class BootView:
         self.received_bytes = 0
         self.latest = ""
         self.tick = 0
+        self.active = True
+        self.painting = False
+        self.repaint = False
         self.timer = window.setInterval(self.draw, 160)
         self.draw()
 
     def draw(self) -> None:
+        if not self.active:
+            return
+        if self.painting:
+            self.repaint = True
+            return
         spinner = "|/-\\"[self.tick % 4]
         self.tick += 1
         elapsed = int((window.performance.now() - self.started) / 1000)
@@ -117,21 +125,36 @@ class BootView:
             + str(self.content_bytes)
             + " file bytes"
         )
-        lines.append(str(self.received_bytes) + " structured-output bytes received")
-        for step in self.steps[-3:]:
-            lines.append("  " + step)
+        stream = str(self.received_bytes) + " structured-output bytes received"
         if self.latest:
-            lines.append("latest: " + self.latest)
+            stream += " | latest: " + self.latest
+        lines.append(stream)
+        # Phase history is useful on a normal display, but the filesystem is the
+        # primary boot artifact. On short terminals, give every spare row to it.
+        if self.terminal.rows >= 18:
+            for step in self.steps[-2:]:
+                lines.append("  " + step)
         lines.append("")
+        lines.append("filesystem preview:")
         tree = self.tree.split("\n")
-        available = max(1, self.terminal.rows - len(lines) - 3)
+        available = max(4, self.terminal.rows - len(lines) - 2)
         for line in tree[:available]:
             lines.append(line)
         if len(tree) > available:
             lines.append("... preview clipped to terminal height")
         lines.append("")
         lines.append("Preview only until validated. Ctrl-C cancels.")
-        self.terminal.write("\x1b[H\x1b[2J" + "\r\n".join(lines))
+        self.painting = True
+        self.terminal.write(
+            "\x1b[H\x1b[2J" + "\r\n".join(lines),
+            self.painted,
+        )
+
+    def painted(self) -> None:
+        self.painting = False
+        if self.repaint:
+            self.repaint = False
+            self.draw()
 
     def phase(self, message: str) -> None:
         self.message = message
@@ -168,6 +191,8 @@ class BootView:
         self.draw()
 
     def stop(self) -> None:
+        self.active = False
+        self.repaint = False
         window.clearInterval(self.timer)
 
     def sealed(self, count: int) -> None:
