@@ -1,0 +1,15 @@
+.venv/
+build/
+result
+/result-*
+__pycache__/
+.pytest_cache/
+.env
+.env.*
+*.py[cod]
+/core
+/core.*
+
+/.pre-commit-config.yaml
+.ruff_cache/
+.mypy_cache/

@@ -1,0 +1,38 @@
+[project]
+name = "latent-shell"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "pydantic>=2.11,<3",
+  "pydantic-ai-slim==2.43.0",
+  "openai-codex==0.154.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "httpx>=0.28,<1", "jsonschema>=4.23,<5", "websockets>=15,<17"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.mypy]
+python_version = "3.13"
+check_untyped_defs = true
+follow_imports = "silent"
+
+[[tool.mypy.overrides]]
+module = "foreign"
+# Upstream WebIDL/TS stubs have unrelated consistency errors. Their signatures
+# still type-check our host; only diagnostics inside generated declarations are suppressed.
+ignore_errors = true

@@ -1,0 +1,120 @@
+{
+  "nodes": {
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "git-hooks": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788267358,
+        "narHash": "sha256-nt+lUqYVpc9Y6JeMd2WmXzCDojasdadKo0mWcluvY2Y=",
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "rev": "27555e2624241fb116b49095df4caaee85a25691",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "rev": "27555e2624241fb116b49095df4caaee85a25691",
+        "type": "github"
+      }
+    },
+    "mojo-json": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789099926,
+        "narHash": "sha256-k0O5pjdM6oOh6rOsd3JynmQr8fg7caNpm2nyV4DrCF4=",
+        "owner": "ehsanmok",
+        "repo": "json",
+        "rev": "bc2c0e8378aa5eb8c61f40dd16b4f3b1473cfd34",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ehsanmok",
+        "repo": "json",
+        "rev": "bc2c0e8378aa5eb8c61f40dd16b4f3b1473cfd34",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1787360063,
+        "narHash": "sha256-dt4WdcvsA8/RCe+VZZwqU0X+XMM3wBbGCWA0/sFWzGo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2c423e03bbafcff28bfadc6781a4a8257f205cb5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2c423e03bbafcff28bfadc6781a4a8257f205cb5",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "git-hooks": "git-hooks",
+        "mojo-json": "mojo-json",
+        "nixpkgs": "nixpkgs",
+        "toybox": "toybox",
+        "ts-to-python": "ts-to-python"
+      }
+    },
+    "toybox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760460335,
+        "narHash": "sha256-b5sigIxyg4T4wVc5z8Das+RdEXmNBPFsXpWwXxU/ERE=",
+        "owner": "landley",
+        "repo": "toybox",
+        "rev": "a61f9fe68fafdabf2913b9498ce9ae1a086ed11d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "landley",
+        "ref": "0.8.13",
+        "repo": "toybox",
+        "type": "github"
+      }
+    },
+    "ts-to-python": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774282256,
+        "narHash": "sha256-h9woiAGlPM2VOeOmyby+sagkmjVQ6Lw92fWxlAUy+Y8=",
+        "owner": "pyodide",
+        "repo": "ts-to-python",
+        "rev": "aa02341e78e8c2facf53a7d8a3ce98da2aa84ff5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pyodide",
+        "repo": "ts-to-python",
+        "rev": "aa02341e78e8c2facf53a7d8a3ce98da2aa84ff5",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
